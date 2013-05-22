@@ -32,6 +32,9 @@ our @EXPORT = qw(encode_json decode_json JSON);
 sub JSON () { our $JSON_Class }
 
 1;
+__END__
+
+=pod
 
 =head1 NAME
 
