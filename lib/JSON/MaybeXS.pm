@@ -7,24 +7,24 @@ use base qw(Exporter);
 our $VERSION = '1.000000';
 
 BEGIN {
-  our $JSON_Class;
+    our $JSON_Class;
 
-  our @err;
+    our @err;
 
-  if (eval { require Cpanel::JSON::XS; 1; }) {
-    $JSON_Class = 'Cpanel::JSON::XS';
-  } else {
-    push @err, "Error loading Cpanel::JSON::XS: $@";
-    if (eval { require JSON::PP; 1; }) {
-      $JSON_Class = 'JSON::PP';
+    if (eval { require Cpanel::JSON::XS; 1; }) {
+        $JSON_Class = 'Cpanel::JSON::XS';
     } else {
-      push @err, "Error loading JSON::PP: $@";
+        push @err, "Error loading Cpanel::JSON::XS: $@";
+        if (eval { require JSON::PP; 1; }) {
+            $JSON_Class = 'JSON::PP';
+        } else {
+            push @err, "Error loading JSON::PP: $@";
+        }
     }
-  }
-  unless ($JSON_Class) {
-    die join("\n", "Couldn't load a JSON module:", @err);
-  }
-  $JSON_Class->import(qw(encode_json decode_json));
+    unless ($JSON_Class) {
+        die join("\n", "Couldn't load a JSON module:", @err);
+    }
+    $JSON_Class->import(qw(encode_json decode_json));
 }
 
 our @EXPORT = qw(encode_json decode_json JSON);
