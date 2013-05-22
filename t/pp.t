@@ -2,7 +2,8 @@ use strict;
 use warnings FATAL => 'all';
 use Test::Without::Module 'Cpanel::JSON::XS';
 use if !do { require JSON::PP; 1; }, 'Test::More', skip_all => 'No JSON::PP';
-use Test::More;
+
+use Test::More 0.88;
 use JSON::MaybeXS;
 
 is(JSON, 'JSON::PP', 'Correct JSON class');
