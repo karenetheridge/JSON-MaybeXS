@@ -1,7 +1,7 @@
-package JSON::MaybeXS;
-
 use strict;
 use warnings FATAL => 'all';
+package JSON::MaybeXS;
+
 use base qw(Exporter);
 
 our $VERSION = '1.000000';
