@@ -70,7 +70,7 @@ for (qw(configure build test runtime)) {
 # we require Cpanel::JSON::XS, except if JSON::XS is already installed.
 # (we also always recommend Cpanel::JSON::XS, just to make sure.)
 $WriteMakefileArgs{PREREQ_PM}{'Cpanel::JSON::XS'} = '2.3310'
-    if can_xs() && !eval { require JSON::XS; 1; };
+    if!parse_args()->{PUREPERL_ONLY} && !eval { require JSON::XS; 1; } && can_xs();
 
 $WriteMakefileArgs{MIN_PERL_VERSION} = delete $WriteMakefileArgs{PREREQ_PM}{perl} || 0;
 
